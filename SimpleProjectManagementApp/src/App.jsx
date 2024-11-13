@@ -11,7 +11,7 @@ function App() {
     selectedProjectId: null,
   });
 
-  function goToViewMove() {
+  function goToEmptyViewMode() {
     setSelectedProjectState({
       viewMode: ProjectViewMode.EMPTY,
       selectedProjectId: null,
@@ -50,9 +50,11 @@ function App() {
 
   function onProjectRemove(project) {
     setProjects((prevState) => {
-      goToViewMove();
+      const newProjectsList = prevState.filter((p) => p.id !== project.id);
 
-      return prevState.filter((p) => p.id !== project.id);
+      goToEmptyViewMode();
+
+      return newProjectsList;
     });
   }
 
@@ -69,7 +71,7 @@ function App() {
 
       const newProject = { ...proj, tasks: projectTasks };
 
-      return [newProject, prevState.filter((p) => p.id !== proj.id)];
+      return [newProject, ...prevState.filter((p) => p.id !== proj.id)];
     });
   }
 
@@ -83,7 +85,7 @@ function App() {
 
       const newProject = { ...proj, tasks: projectTasks };
 
-      return [newProject, prevState.filter((p) => p.id !== proj.id)];
+      return [newProject, ...prevState.filter((p) => p.id !== proj.id)];
     });
   }
 
