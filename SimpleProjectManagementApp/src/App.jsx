@@ -92,14 +92,14 @@ function App() {
   return (
     <div className="h-full">
       <SideMenu
-        className="inline-block w-2/6 h-full bg-gray-100 shadow-md"
+        className="inline-block w-2/6 h-screen bg-gray-100 shadow-md"
         projects={projects}
         onOpenAddProjectForm={onOpenAddProjectForm}
         onSelectProjectClick={onSelectProject}
       />
 
       <ProjectContainer
-        className="inline-block w-4/6 h-full align-top bg-slate-200"
+        className="inline-block w-4/6 h-screen align-top bg-slate-200"
         selectedProjectState={selectedProjectState}
         projects={projects}
         onAddProject={onAddProject}
