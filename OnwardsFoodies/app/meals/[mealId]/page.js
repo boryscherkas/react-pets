@@ -3,6 +3,21 @@ import Image from 'next/image';
 import { getMeal } from '@/lib/meals';
 import { notFound } from 'next/navigation';
 
+
+export async function generateMetadata({ params }) {
+  const meal = getMeal(params.mealId);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.description,
+  };
+};
+
+
 export default function SpecificMealPage({ params }) {
   const meal = getMeal(params.mealId);
 
@@ -18,7 +33,7 @@ export default function SpecificMealPage({ params }) {
           <Image src={meal.image} alt="Cooked dish" fill />
       </div>
       <div className={classes.headerText}>
-        <h1>TITLE</h1>
+        <h1>{meal.title}</h1>
         <p className={classes.creator}>
           by <a href={`mailto:${meal.creator_email}`}>{meal.creator}</a>
         </p>
